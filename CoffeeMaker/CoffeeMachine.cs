@@ -53,8 +53,23 @@ namespace CoffeeMaker
             if (handler != null) handler(this, e);
         }
 
-        public Coffee MakeCoffee(StrengthCoffee strengthCoffee, MugVolume mugVolume, CoffeeMakerBase coffeeMaker) => coffeeMaker.MakeCoffee(strengthCoffee, mugVolume);
+        public Coffee MakeCoffee(StrengthCoffee strengthCoffee, MugVolume mugVolume, CoffeeMakerBase coffeeMaker) 
+        { 
+            Coffee coffee = coffeeMaker.MakeCoffee(strengthCoffee, mugVolume);
+            SaveOperationAsync(coffee);
+            return coffee;
+        }
 
         public void Clean() => PollutionLevel = 0;
+
+        async void SaveOperationAsync(Coffee coffee)
+        {
+            using (CoffeeContext db = new CoffeeContext())
+            {
+                var operationCoffee = new OperationCoffee { Coffee = coffee, Date = DateTime.UtcNow };
+                db.CoffeeOperations.Add(operationCoffee);
+                await db.SaveChangesAsync();
+            }
+        }
     }
 }

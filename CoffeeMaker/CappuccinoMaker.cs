@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.EntityFrameworkCore;
 namespace CoffeeMaker
 {
     public class CappuccinoMaker : CoffeeMakerBase
@@ -22,9 +22,7 @@ namespace CoffeeMaker
 
             UseResoureces(needWaterVolume, needGrainsGram);
 
-            double percentageCaffeine = (needGrainsGram / mugVolumeValue) * 100;
-
-            return new Coffee(CoffeeNameMake, percentageCaffeine, mugVolume);
+            return new Coffee(CoffeeNameMake, needGrainsGram, mugVolume);
         }
     }
 }

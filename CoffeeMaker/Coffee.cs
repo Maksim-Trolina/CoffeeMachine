@@ -18,16 +18,18 @@ namespace CoffeeMaker
         Half = 200,
         Full = 400
     }
+   
     public class Coffee
     {
+        public int Id { get; set; }
         public double CaffeineGram { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public MugVolume MugVolume { get; set; }
 
-        public Coffee(string name, double percentageCaffeine, MugVolume mugVolume)
+        public Coffee(string name, double caffeineGram, MugVolume mugVolume)
         {
             Name = name;
-            CaffeineGram = percentageCaffeine;
+            CaffeineGram = caffeineGram;
             MugVolume = mugVolume;
         }
 

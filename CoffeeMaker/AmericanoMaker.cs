@@ -22,9 +22,7 @@ namespace CoffeeMaker
 
             UseResoureces(needWaterVolume, needGrainsGram);
 
-            double percentageCaffeine = (needGrainsGram / mugVolumeValue) * 100;
-
-            return new Coffee(CoffeeNameMake, percentageCaffeine, mugVolume);
+            return new Coffee(CoffeeNameMake, needGrainsGram, mugVolume);
         }
     }
 }
